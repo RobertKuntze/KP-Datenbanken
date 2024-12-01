@@ -1,4 +1,6 @@
--- EXPLAIN ANALYZE
+-- SELECT posts that have the dataset tag and linked to a post that doesn't have it
+
+EXPLAIN ANALYZE
 SELECT p1.creationdate, p2.creationdate, p1.tags, p2.tags
 FROM posts p1
 JOIN postlinks pl ON p1.id = pl.postid

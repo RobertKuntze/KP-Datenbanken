@@ -1,11 +1,7 @@
---EXPLAIN ANALYZE
-WITH topcomments AS 
-(
-    SELECT id, postid
-    FROM comments
-    ORDER BY score DESC
-)
+-- SELECT all post ids and their comment ids in an array
+
+EXPLAIN ANALYZE
 SELECT p.id, array_agg(c.id)
 FROM posts p
-JOIN topcomments c ON p.id = c.postid
+JOIN comments c ON p.id = c.postid
 GROUP BY p.id

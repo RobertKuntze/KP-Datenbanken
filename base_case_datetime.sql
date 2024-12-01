@@ -1,4 +1,6 @@
--- EXPLAIN ANALYZE
+-- SELECT posts that were created after 2012, by users created earlier than 2013 that link to a post made before 2013
+
+EXPLAIN ANALYZE
 SELECT u.creationdate, p1.creationdate, p2.creationdate, pl.id
 FROM users u
 JOIN posts p1 ON p1.owneruserid = u.id

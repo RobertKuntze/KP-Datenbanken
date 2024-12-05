@@ -8,6 +8,7 @@
 - `MATERIALIZED VIEW`
 - `RECURSIVE` CTE
 - Verschiedene Buffer Sizes: `ALTER SYSTEM SET shared_buffers TO <value>;`
+- Wrong Road Scenarios
 
 # Evaluation
 - Buffers & Memory

@@ -1,4 +1,6 @@
 -- get posts and all their answers that have a higher score as a json
+-- almost the same cost, but way faster execution
+-- -> cost estimation for jsons seems incorrect
 
 EXPLAIN ANALYZE
 WITH answers AS

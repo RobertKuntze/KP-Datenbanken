@@ -1,8 +1,11 @@
 EXPLAIN ANALYZE
-SELECT avg(score) score, count(score) count, owneruserid
-FROM posts 
-WHERE owneruserid IS NOT NULL
+SELECT
+    extract(YEAR FROM v.creationdate) as Year,
+    p.posttypeid,
+    v.votetypeid,
+    COUNT(v.id) votecount
+FROM votes v
+JOIN posts p ON v.postid = p.id
 GROUP BY GROUPING SETS (
-    CUBE(owneruserid)
+    ROLLUP(Year, p.posttypeid, v.votetypeid)
 )
-ORDER BY count DESC

@@ -6,13 +6,14 @@ WITH parentids AS (
 )
 SELECT
 	u.id::TEXT,
-	u.displayname,
+	u.displayname::TEXT,
 	ARRAY_AGG(p.id::TEXT || ', ' || p.title || ', ' || p.body) as post
 FROM users u
 JOIN posts p
-ON u.displayname = p.ownerdisplayname
+ON u.displayname::TEXT = p.ownerdisplayname::TEXT
+-- ON u.id::TEXT = p.owneruserid::TEXT
 WHERE p.parentid::TEXT IS NULL
 AND (SELECT * FROM parentids) ~~ ('%' || p.id::TEXT || '%')
 AND p.creationdate::TEXT ~~ '2012%'
 AND u.displayname != 'Community'
-GROUP BY u.displayname, u.id::TEXT
+GROUP BY u.displayname::TEXT, u.id::TEXT

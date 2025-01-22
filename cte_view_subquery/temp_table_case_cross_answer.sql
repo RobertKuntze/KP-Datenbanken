@@ -1,4 +1,3 @@
--- EXPLAIN ANALYZE
 CREATE TEMPORARY TABLE IF NOT EXISTS AnswersTmp AS (
 	SELECT DISTINCT
 		u.id, 
@@ -19,3 +18,5 @@ ON a1.id = a2.answer_id
 AND a2.id = a1.answer_id
 -- no inverse tuples
 AND a1.id > a2.id;
+
+DROP TABLE AnswersTmp;

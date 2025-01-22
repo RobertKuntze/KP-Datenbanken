@@ -1,4 +1,3 @@
--- EXPLAIN ANALYZE 
 CREATE TEMPORARY TABLE IF NOT EXISTS LastInteractions AS (
 	SELECT DISTINCT
 		u.id, 
@@ -17,3 +16,5 @@ SELECT displayname, ARRAY_AGG(answer_name) as last_interactions
 FROM LastInteractions
 WHERE rownum <= 3
 GROUP BY "id", displayname;
+
+DROP TABLE LastInteractions;

@@ -1,4 +1,3 @@
--- EXPLAIN ANALYZE 
 CREATE MATERIALIZED VIEW IF NOT EXISTS LastInteractionsViewMat AS (
 	SELECT DISTINCT
 		u.id, 
@@ -12,8 +11,6 @@ CREATE MATERIALIZED VIEW IF NOT EXISTS LastInteractionsViewMat AS (
 	JOIN users u2 ON a.owneruserid = u2.id AND u2.id != u.id
 );
 
-
--- EXPLAIN ANALYZE
 REFRESH MATERIALIZED VIEW LastInteractionsViewMat;
 
 -- EXPLAIN ANALYZE 
@@ -21,3 +18,5 @@ SELECT displayname, ARRAY_AGG(answer_name) as last_interactions
 FROM LastInteractionsViewMat
 WHERE rownum <= 3
 GROUP BY "id", displayname;
+
+DROP MATERIALIZED VIEW LastInteractionsViewMat;

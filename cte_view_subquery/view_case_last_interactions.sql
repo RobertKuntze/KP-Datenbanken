@@ -1,4 +1,3 @@
--- EXPLAIN ANALYZE 
 CREATE OR REPLACE VIEW LastInteractionsView AS (
 	SELECT DISTINCT
 		u.id, 
@@ -17,3 +16,5 @@ SELECT displayname, ARRAY_AGG(answer_name) as last_interactions
 FROM LastInteractionsView
 WHERE rownum <= 3
 GROUP BY "id", displayname;
+
+DROP VIEW LastInteractionsView;

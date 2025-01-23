@@ -1,6 +1,8 @@
 -- average Post and Answer Count and corresponding scores for active users grouped by year of user creation date
+-- compare to using cte/join to differentiate posttypes
 
 EXPLAIN ANALYZE
+
 WITH UserPostNumbers AS (
     SELECT
     u.id userId, 

@@ -1,5 +1,6 @@
 -- rank users over their total votes per posttype
 EXPLAIN ANALYZE
+
 WITH VoteStats AS (
     SELECT 
         u.Id AS UserId,

@@ -1,5 +1,6 @@
 -- compare percentage of answered questions by year
 EXPLAIN ANALYZE
+
 WITH QuestionsAnswered AS (
     SELECT 
         extract(YEAR FROM p.CreationDate) AS Year,

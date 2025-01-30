@@ -6,7 +6,9 @@ WITH parentids AS (
 SELECT
 	u.id,
 	u.displayname,
-	ARRAY_AGG((p.id, p.title, p.body)) as post
+	ARRAY_AGG(p.id) as postIds,
+	array_agg(p.title) as postTitles,
+	array_agg(p.body) as postBodies
 FROM users u
 JOIN posts p
 ON u.id = p.owneruserid

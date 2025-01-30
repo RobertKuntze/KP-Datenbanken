@@ -1,0 +1,1 @@
+Does the cost estimation understand that jsons are harder to query than tables.

@@ -1,5 +1,6 @@
 ### Id <--> Non-Id
 Is the Postgres-Optimizer able to optimize the comparison of Non-Id colums in a query?
+-- Ergebnismengen vergleichern
 
 ### Strings / Wrong-/Off-Road
 Is The Postgres-Optimizer able to detect redundant text casts and ignore them?

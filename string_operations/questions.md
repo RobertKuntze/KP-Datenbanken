@@ -1,0 +1,1 @@
+Does postgres realize when regexp_like and like have the same result

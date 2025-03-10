@@ -1,0 +1,222 @@
+{
+  "Plan": {
+    "Node Type": "Aggregate",
+    "Strategy": "Sorted",
+    "Partial Mode": "Simple",
+    "Parallel Aware": false,
+    "Async Capable": false,
+    "Startup Cost": 28612.32,
+    "Total Cost": 28612.37,
+    "Plan Rows": 1,
+    "Plan Width": 96,
+    "Actual Startup Time": 1279.361,
+    "Actual Total Time": 1279.817,
+    "Actual Rows": 70,
+    "Actual Loops": 1,
+    "Group Key": [
+      "((u.displayname)::text)",
+      "((u.id)::text)"
+    ],
+    "Plans": [
+      {
+        "Node Type": "Aggregate",
+        "Strategy": "Plain",
+        "Partial Mode": "Finalize",
+        "Parent Relationship": "InitPlan",
+        "Subplan Name": "InitPlan 1",
+        "Parallel Aware": false,
+        "Async Capable": false,
+        "Startup Cost": 13261.07,
+        "Total Cost": 13261.08,
+        "Plan Rows": 1,
+        "Plan Width": 32,
+        "Actual Startup Time": 19.685,
+        "Actual Total Time": 19.773,
+        "Actual Rows": 1,
+        "Actual Loops": 1,
+        "Plans": [
+          {
+            "Node Type": "Gather",
+            "Parent Relationship": "Outer",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Startup Cost": 13260.84,
+            "Total Cost": 13261.05,
+            "Plan Rows": 2,
+            "Plan Width": 32,
+            "Actual Startup Time": 19.092,
+            "Actual Total Time": 19.329,
+            "Actual Rows": 3,
+            "Actual Loops": 1,
+            "Workers Planned": 2,
+            "Workers Launched": 2,
+            "Single Copy": false,
+            "Plans": [
+              {
+                "Node Type": "Aggregate",
+                "Strategy": "Plain",
+                "Partial Mode": "Partial",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Startup Cost": 12260.84,
+                "Total Cost": 12260.85,
+                "Plan Rows": 1,
+                "Plan Width": 32,
+                "Actual Startup Time": 16.012,
+                "Actual Total Time": 16.013,
+                "Actual Rows": 1,
+                "Actual Loops": 3,
+                "Workers": [],
+                "Plans": [
+                  {
+                    "Node Type": "Seq Scan",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": true,
+                    "Async Capable": false,
+                    "Relation Name": "posts",
+                    "Alias": "a",
+                    "Startup Cost": 0.0,
+                    "Total Cost": 11974.85,
+                    "Plan Rows": 38132,
+                    "Plan Width": 4,
+                    "Actual Startup Time": 0.02,
+                    "Actual Total Time": 13.757,
+                    "Actual Rows": 15918,
+                    "Actual Loops": 3,
+                    "Filter": "((parentid)::text IS NOT NULL)",
+                    "Rows Removed by Filter": 14740,
+                    "Workers": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Node Type": "Sort",
+        "Parent Relationship": "Outer",
+        "Parallel Aware": false,
+        "Async Capable": false,
+        "Startup Cost": 15351.25,
+        "Total Cost": 15351.25,
+        "Plan Rows": 1,
+        "Plan Width": 947,
+        "Actual Startup Time": 1279.35,
+        "Actual Total Time": 1279.564,
+        "Actual Rows": 70,
+        "Actual Loops": 1,
+        "Sort Key": [
+          "((u.displayname)::text)",
+          "((u.id)::text)"
+        ],
+        "Sort Method": "quicksort",
+        "Sort Space Used": 84,
+        "Sort Space Type": "Memory",
+        "Plans": [
+          {
+            "Node Type": "Hash Join",
+            "Parent Relationship": "Outer",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Join Type": "Inner",
+            "Startup Cost": 13741.54,
+            "Total Cost": 15351.24,
+            "Plan Rows": 1,
+            "Plan Width": 947,
+            "Actual Startup Time": 1271.653,
+            "Actual Total Time": 1279.487,
+            "Actual Rows": 70,
+            "Actual Loops": 1,
+            "Inner Unique": false,
+            "Hash Cond": "((u.displayname)::text = (p.ownerdisplayname)::text)",
+            "Plans": [
+              {
+                "Node Type": "Seq Scan",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Relation Name": "users",
+                "Alias": "u",
+                "Startup Cost": 0.0,
+                "Total Cost": 1408.06,
+                "Plan Rows": 40324,
+                "Plan Width": 13,
+                "Actual Startup Time": 0.008,
+                "Actual Total Time": 4.776,
+                "Actual Rows": 40324,
+                "Actual Loops": 1,
+                "Filter": "((displayname)::text <> 'Community'::text)",
+                "Rows Removed by Filter": 1
+              },
+              {
+                "Node Type": "Hash",
+                "Parent Relationship": "Inner",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Startup Cost": 13741.52,
+                "Total Cost": 13741.52,
+                "Plan Rows": 2,
+                "Plan Width": 892,
+                "Actual Startup Time": 1271.563,
+                "Actual Total Time": 1271.773,
+                "Actual Rows": 61,
+                "Actual Loops": 1,
+                "Hash Buckets": 1024,
+                "Original Hash Buckets": 1024,
+                "Hash Batches": 1,
+                "Original Hash Batches": 1,
+                "Peak Memory Usage": 62,
+                "Plans": [
+                  {
+                    "Node Type": "Gather",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Startup Cost": 1000.0,
+                    "Total Cost": 13741.52,
+                    "Plan Rows": 2,
+                    "Plan Width": 892,
+                    "Actual Startup Time": 25.045,
+                    "Actual Total Time": 1271.058,
+                    "Actual Rows": 2341,
+                    "Actual Loops": 1,
+                    "Workers Planned": 2,
+                    "Workers Launched": 2,
+                    "Single Copy": false,
+                    "Plans": [
+                      {
+                        "Node Type": "Seq Scan",
+                        "Parent Relationship": "Outer",
+                        "Parallel Aware": true,
+                        "Async Capable": false,
+                        "Relation Name": "posts",
+                        "Alias": "p",
+                        "Startup Cost": 0.0,
+                        "Total Cost": 12741.32,
+                        "Plan Rows": 1,
+                        "Plan Width": 892,
+                        "Actual Startup Time": 3.163,
+                        "Actual Total Time": 1238.299,
+                        "Actual Rows": 780,
+                        "Actual Loops": 3,
+                        "Filter": "(((parentid)::text IS NULL) AND ((creationdate)::text ~~ '2012%'::text) AND ((InitPlan 1).col1 !~~ (('%'::text || (id)::text) || '%'::text)))",
+                        "Rows Removed by Filter": 29878,
+                        "Workers": []
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "Settings": {},
+  "Planning Time": 0.316,
+  "Triggers": [],
+  "Execution Time": 1280.001
+}

@@ -1,4 +1,5 @@
 -- wrong road with unnessecary string casts
+--EXPLAIN (ANALYZE, BUFFERS, FORMAT JSON, SETTINGS)
 WITH parentids AS (
 	SELECT STRING_AGG(a.parentid::TEXT, ',')
 	FROM posts a
@@ -13,7 +14,7 @@ JOIN posts p
 ON u.displayname::TEXT = p.ownerdisplayname::TEXT
 -- ON u.id::TEXT = p.owneruserid::TEXT
 WHERE p.parentid::TEXT IS NULL
-AND (SELECT * FROM parentids) ~~ ('%' || p.id::TEXT || '%')
+AND NOT (SELECT * FROM parentids) ~~ ('%' || p.id::TEXT || '%')
 AND p.creationdate::TEXT ~~ '2012%'
 AND u.displayname != 'Community'
 GROUP BY u.displayname::TEXT, u.id::TEXT
